@@ -10,5 +10,5 @@ RUN mkdir /data /bower
 VOLUME /data
 WORKDIR /data
 
-ENTRYPOINT ["bower", "--allow-root", "--config.storage.cache=/bower"]
+ENTRYPOINT ["bower", "--allow-root", "--config.storage.packages=/bower"]
 CMD ["update"]
