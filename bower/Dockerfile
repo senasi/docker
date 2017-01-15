@@ -6,9 +6,9 @@ RUN apk --no-cache add \
         openssh && \
     npm install -g bower
 
-RUN mkdir /data
+RUN mkdir /data /bower
 VOLUME /data
 WORKDIR /data
 
-ENTRYPOINT ["bower", "--allow-root"]
+ENTRYPOINT ["bower", "--allow-root", "--config.storage.cache=/bower"]
 CMD ["update"]
