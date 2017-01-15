@@ -11,7 +11,7 @@ RUN mkdir /data /composer
 VOLUME /data
 WORKDIR /data
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/composer
 
 ENTRYPOINT ["composer"]
