@@ -1,11 +1,10 @@
 FROM php:7.0-fpm-alpine
 
-RUN mkdir /libiconv
-COPY libiconv.patch /libiconv/
 WORKDIR /libiconv
+COPY libiconv.patch /libiconv/
 
 RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
-    curl -SL http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz | tar -xz --strip-components=1 -C /libiconv && \
+    curl -SL http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz | tar -xz --strip-components=1 && \
     patch -p1 -i libiconv.patch && \
     ./configure --prefix=/usr/local && \
     make && \
