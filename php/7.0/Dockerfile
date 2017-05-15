@@ -2,8 +2,7 @@ FROM php:7.0-fpm-alpine
 
 WORKDIR /build
 
-RUN mkdir /build/libiconv && \
-	mkdir /build/libsodium
+RUN mkdir /build/libiconv
 
 COPY libiconv.patch /build/libiconv/
 
@@ -14,13 +13,10 @@ RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
     ./configure --prefix=/usr/local && \
     make && \
     make install && \
-    cd /build/libsodium && \
-    curl -SL https://download.libsodium.org/libsodium/releases/libsodium-1.0.12.tar.gz | tar -xz --strip-components=1 && \
-    ./configure && \
-    make && make check && \
-    make install && \    
     rm -rf /build && \
     apk add --no-cache --virtual .run-deps \
+    	libsodium \
+    	icu-libs \
         openssl \
         libmcrypt \
         zlib \
@@ -31,6 +27,8 @@ RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
         libjpeg \
         libpng && \
     apk add --no-cache --virtual .build-deps \
+    	libsodium-dev \
+    	icu-dev \
         openssl-dev \
         libmcrypt-dev \
         zlib-dev  \
