@@ -33,7 +33,7 @@ RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
     docker-php-ext-configure gd  --with-jpeg-dir=/usr/include/ --with-freetype-dir=/usr/include/ --with-webp-dir=/usr/include/ && \
     pecl install mongodb mailparse && \
     docker-php-ext-enable mongodb mailparse && \
-    docker-php-ext-install calendar gd pcntl pdo_mysql soap sockets xsl zip opcache mcrypt && \
+    docker-php-ext-install calendar gd pcntl pdo_mysql soap sockets xsl zip opcache mcrypt bcmath && \
     apk del .build-deps
 
 ENV LD_PRELOAD /usr/local/lib/preloadable_libiconv.so
