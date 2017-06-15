@@ -44,4 +44,12 @@ RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
     docker-php-ext-install calendar gd pcntl pdo_mysql soap sockets xsl zip opcache mcrypt bcmath intl && \
     apk del .build-deps
 
+RUN set -ex \
+	&& cd /usr/local/etc \
+	&& { \
+		echo '[www]'; \
+		echo 'pm.max_children = 10'; \
+		echo 'pm.max_requests = 500'; \
+	} | tee php-fpm.d/zzz-docker.conf
+
 ENV LD_PRELOAD /usr/local/lib/preloadable_libiconv.so
