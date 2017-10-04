@@ -52,4 +52,6 @@ RUN set -ex \
 		echo 'pm.max_requests = 500'; \
 	} | tee php-fpm.d/zzz-docker.conf
 
+COPY php.ini /usr/local/etc/php/
+
 ENV LD_PRELOAD /usr/local/lib/preloadable_libiconv.so
