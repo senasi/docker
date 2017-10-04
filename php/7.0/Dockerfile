@@ -6,7 +6,7 @@ RUN mkdir /build/libiconv
 
 COPY libiconv.patch /build/libiconv/
 
-RUN apk add --no-cache --virtual .phpize-deps-configure bash $PHPIZE_DEPS && \
+RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
     cd /build/libiconv && \
     curl -SL http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz | tar -xz --strip-components=1 && \
     patch -p1 -i libiconv.patch && \
@@ -27,6 +27,7 @@ RUN apk add --no-cache --virtual .phpize-deps-configure bash $PHPIZE_DEPS && \
         libjpeg \
         libpng && \
     apk add --no-cache --virtual .build-deps \
+    	bash \
     	libsodium-dev \
     	icu-dev \
         openssl-dev \
