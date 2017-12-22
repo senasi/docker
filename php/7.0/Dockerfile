@@ -25,7 +25,8 @@ RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
         freetype \
         libwebp \
         libjpeg \
-        libpng && \
+        libpng \
+        c-client && \
     apk add --no-cache --virtual .build-deps \
     	bash \
     	libsodium-dev \
@@ -38,7 +39,8 @@ RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
         freetype-dev \
         libwebp-dev \
         libjpeg-turbo-dev \
-        libpng-dev && \
+        libpng-dev \
+        imap-dev && \
     docker-php-ext-configure gd  --with-jpeg-dir=/usr/include/ --with-freetype-dir=/usr/include/ --with-webp-dir=/usr/include/ && \
     pecl install mongodb mailparse libsodium && \
     docker-php-ext-enable mongodb mailparse sodium && \
