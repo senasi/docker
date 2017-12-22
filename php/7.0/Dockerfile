@@ -44,7 +44,7 @@ RUN apk add --no-cache --virtual .phpize-deps-configure $PHPIZE_DEPS && \
     docker-php-ext-configure gd  --with-jpeg-dir=/usr/include/ --with-freetype-dir=/usr/include/ --with-webp-dir=/usr/include/ && \
     pecl install mongodb mailparse libsodium && \
     docker-php-ext-enable mongodb mailparse sodium && \
-    docker-php-ext-install calendar gd pcntl pdo_mysql soap sockets xsl zip opcache mcrypt bcmath intl && \
+    docker-php-ext-install calendar gd pcntl pdo_mysql soap sockets xsl zip opcache mcrypt bcmath intl imap && \
     apk del .build-deps
 
 RUN set -ex \
