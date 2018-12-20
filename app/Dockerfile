@@ -1,4 +1,4 @@
-FROM senasi/php:7.0
+FROM senasi/php:7.1
 
 RUN mkdir /data && \
     mkdir /data/temp && \
